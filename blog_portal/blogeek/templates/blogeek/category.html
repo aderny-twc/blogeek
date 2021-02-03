@@ -25,7 +25,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">BLOGEEK</a>
+        <a class="navbar-brand" href="{% url 'home' %}">BLOGEEK</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -57,8 +57,8 @@
         <!-- Blog Entries Column -->
         <div class="col-md-8">
 
-            <h1 class="my-4">All articles
-                <!--                <small>Secondary Text</small>-->
+            <h1 class="my-4">{{ category }}
+                                <small>category</small>
             </h1>
 
             <!-- Blog Post -->
@@ -121,7 +121,7 @@
                 <h5 class="card-header">Categories</h5>
                 <div class="list-group">
                     {% for item in categories %}
-                    <a href="/category/{{ item.pk }}" class="list-group-item list-group-item-action" style="border:none">{{ item.title }}</a>
+                    <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action" style="border:none">{{ item.title }}</a>
                     {% endfor %}
                 </div>
             </div>
