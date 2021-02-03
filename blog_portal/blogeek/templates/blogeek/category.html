@@ -24,7 +24,7 @@
     <div class="card-body">
         <h2 class="card-title">{{ item.title }}</h2>
         <p class="card-text">{{ item.description }}</p>
-        <a href="#" class="btn btn-primary">Read More &rarr;</a>
+        <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item">Category: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a></li>

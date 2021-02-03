@@ -25,6 +25,9 @@ class BlogPosts(models.Model):
         verbose_name_plural = 'Статьи'
         ordering = ['-created_at']
 
+    def get_absolute_url(self):
+        return reverse('view_blogposts', kwargs={"blogposts_id": self.pk})
+
     def __str__(self):
         return self.title
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import BlogPosts, Category
 
 
@@ -20,3 +20,9 @@ def get_category(request, category_id):
         'category': category,
     }
     return render(request, 'blogeek/category.html', context)
+
+
+def view_blogposts(request, blogposts_id):
+    blogposts_item = get_object_or_404(BlogPosts, pk=blogposts_id)
+    # blogposts_item = BlogPosts.objects.get(pk=blogposts_id)
+    return render(request, 'blogeek/view_blogposts.html', {"blogposts_item": blogposts_item})
