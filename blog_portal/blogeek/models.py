@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-class BlogPost(models.Model):
+class BlogPosts(models.Model):
     """
     Blog article class.
     """
@@ -22,7 +22,6 @@ class BlogPost(models.Model):
     class Meta:
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
-        ordering = ['-created_at']
 
     def __str__(self):
         return self.title
