@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404
+
+from .forms import PostsForm
 from .models import BlogPosts, Category
 
 
@@ -26,3 +28,16 @@ def view_blogposts(request, blogposts_id):
     blogposts_item = get_object_or_404(BlogPosts, pk=blogposts_id)
     # blogposts_item = BlogPosts.objects.get(pk=blogposts_id)
     return render(request, 'blogeek/view_blogposts.html', {"blogposts_item": blogposts_item})
+
+
+def add_posts(request):
+    if request.method == 'POST':
+        pass
+    else:
+        form = PostsForm()
+    title = 'Create posts'
+    context = {
+        'title': title,
+        'form': form,
+    }
+    return render(request, 'blogeek/add_posts.html', context)
