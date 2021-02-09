@@ -13,9 +13,11 @@
 
 <form action="{% url 'add-posts' %}" method="post">
     {% csrf_token %}
-    <!--    {{ form.as_p }}-->
+    {{ form.as_p }}
 
     {{ form.non_field.errors }}
+
+    {% comment %}
     <div class="form-group">
         <label for="{{ form.title.id_for_label }}">Title</label>
         {{ form.title }}
@@ -48,7 +50,19 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary btn-block">Add post</button>
+
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        <div class="invalid-feedback">
+            {{ field.errors }}
+        </div>
+    </div>
+    {% endfor %}
+    {% endcomment %}
+
+    <button type="submit" class="btn btn-primary btn-block mb-5">Add post</button>
 
 </form>
 
