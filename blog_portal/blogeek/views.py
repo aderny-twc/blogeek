@@ -32,9 +32,8 @@ def view_blogposts(request, blogposts_id):
 
 def add_posts(request):
     if request.method == 'POST':
-        #form = PostsForm(request.POST)
+        form = PostsForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
             form.cleaned_data['user_id'] = request.user.id
             post = BlogPosts.objects.create(**form.cleaned_data)
             return redirect(post)
