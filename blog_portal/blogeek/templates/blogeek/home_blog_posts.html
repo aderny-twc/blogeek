@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }} | {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<h1 class="my-4">All articles
+    <!--                <small>Secondary Text</small>-->
+</h1>
+
+<!-- Blog Post -->
+{% for item in object_list %}
+<div class="card mb-4">
+
+    {% if item.photo %}
+    <img class="card-img-top" src="{{ item.photo.url }}" width="250" alt="Card image cap">
+    {% else %}
+    <img class="card-img-top" src="https://picsum.photos/750/300?random=1" alt="Card image cap">
+    {% endif %}
+
+    <div class="card-body">
+        <h2 class="card-title">{{ item.title }}</h2>
+        <p class="card-text">{{ item.description }}</p>
+        <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read More &rarr;</a>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">Category: <a href="{{ item.category.get_absolute_url }}">{{ item.category }}</a>
+        </li>
+    </ul>
+    <div class="card-footer text-muted">
+        Posted {{ item.created_at|date:"Y-m-d H:i" }} by
+        <a href="#">{{ item.user }}</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
+

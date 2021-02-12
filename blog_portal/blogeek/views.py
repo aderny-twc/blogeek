@@ -1,17 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView
 
 from .forms import PostsForm
 from .models import BlogPosts, Category
 
 
-def index(request):
-    posts = BlogPosts.objects.order_by('-created_at')
-    title = 'Список статей'
-    context = {
-        'posts': posts,
-        'title': title,
-    }
-    return render(request, 'blogeek/index.html', context)
+class HomeBlogPosts(ListView):
+    model = BlogPosts
+    template_name = 'blogeek/home_blog_posts.html'
+
+    def get_queryset(self):
+        return BlogPosts.objects.filter(is_published=True)
 
 
 def get_category(request, category_id):
