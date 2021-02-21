@@ -18,6 +18,7 @@ class BlogPostsByCategory(ListView):
     model = BlogPosts
     template_name = 'blogeek/home_blog_posts.html'
     context_object_name = 'posts'
+    allow_empty = False
 
     def get_queryset(self):
         return BlogPosts.objects.filter(category_id=self.kwargs['category_id'],
