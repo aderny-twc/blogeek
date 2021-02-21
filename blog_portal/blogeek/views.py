@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 from .forms import PostsForm
 from .models import BlogPosts, Category
@@ -36,19 +36,7 @@ class ViewBlogPosts(DetailView):
     context_object_name = 'blogposts_item'
 
 
-def add_posts(request):
-    if request.method == 'POST':
-        form = PostsForm(request.POST)
-        if form.is_valid():
-            form.cleaned_data['user_id'] = request.user.id
-            post = BlogPosts.objects.create(**form.cleaned_data)
-            return redirect(post)
-    else:
-        form = PostsForm()
+class CreateBlogPosts(CreateView):
+    form_class = PostsForm
+    template_name = 'blogeek/add_posts.html'
 
-    title = 'Create posts'
-    context = {
-        'title': title,
-        'form': form,
-    }
-    return render(request, 'blogeek/add_posts.html', context)
