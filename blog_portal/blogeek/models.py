@@ -26,7 +26,7 @@ class BlogPosts(models.Model):
         ordering = ['-created_at']
 
     def get_absolute_url(self):
-        return reverse('view_blogposts', kwargs={"blogposts_id": self.pk})
+        return reverse('view_blogposts', kwargs={"pk": self.pk})
 
     def __str__(self):
         return self.title

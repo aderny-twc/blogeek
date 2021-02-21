@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .forms import PostsForm
 from .models import BlogPosts, Category
@@ -30,10 +30,10 @@ class BlogPostsByCategory(ListView):
         return context
 
 
-def view_blogposts(request, blogposts_id):
-    blogposts_item = get_object_or_404(BlogPosts, pk=blogposts_id)
-    # blogposts_item = BlogPosts.objects.get(pk=blogposts_id)
-    return render(request, 'blogeek/view_blogposts.html', {"blogposts_item": blogposts_item})
+class ViewBlogPosts(DetailView):
+    model = BlogPosts
+    template_name = 'blogeek/view_blogposts.html'
+    context_object_name = 'blogposts_item'
 
 
 def add_posts(request):
