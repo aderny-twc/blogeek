@@ -11,7 +11,7 @@ class HomeBlogPosts(ListView):
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return BlogPosts.objects.filter(is_published=True)
+        return BlogPosts.objects.filter(is_published=True).select_related('category')
 
 
 class BlogPostsByCategory(ListView):
@@ -22,7 +22,7 @@ class BlogPostsByCategory(ListView):
 
     def get_queryset(self):
         return BlogPosts.objects.filter(category_id=self.kwargs['category_id'],
-                                        is_published=True)
+                                        is_published=True).select_related('category')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
