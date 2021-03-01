@@ -2,6 +2,16 @@
 
 Simple portal for blogging.
 
+## Functionality
+
+![](.screenshots/animation.gif)
+
+You can:
+
+- Get all posts
+- Sort by category
+- Add posts
+
 ## Project structure
 
 ```
