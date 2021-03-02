@@ -9,6 +9,7 @@ class HomeBlogPosts(ListView):
     model = BlogPosts
     template_name = 'blogeek/home_blog_posts.html'
     context_object_name = 'posts'
+    paginate_by = 2
 
     def get_queryset(self):
         return BlogPosts.objects.filter(is_published=True).select_related('category')
@@ -19,6 +20,7 @@ class BlogPostsByCategory(ListView):
     template_name = 'blogeek/home_blog_posts.html'
     context_object_name = 'posts'
     allow_empty = False
+    paginate_by = 2
 
     def get_queryset(self):
         return BlogPosts.objects.filter(category_id=self.kwargs['category_id'],
